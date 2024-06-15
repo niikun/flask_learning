@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello, Flask!</title>
-</head>
-<body>
-    <h1>Hello, {{ name }}!</h1>
-    {% for name_list in name_lists %}
-        {% if name_list == "Bob" %}
-            <h2 style="color: red">{{name_list}}</h2>
-        {% else %}
-            <h2>{{name_list}}</h2>
-        {% endif %}
+{% extends "base.html" %}
+{% block content %}
+    <h1>メモアプリ</h1>
+        <article>
+            <h2>メモ１</h2>
+            <p>メモ１の内容</p>
+        </article>
+        <article>
+            <h2>メモ2</h2>
+            <p>メモ2の内容</p>
+        </article>
+    
 
-    {% endfor%}
-
-</body>
-</html>
+{% endblock %}
