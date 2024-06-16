@@ -2,14 +2,14 @@
 {% block content %}
     <h1>メモアプリ</h1>
     {% if memo %}
-        {% for m in memo %}
+        {% for m in memo_list %}
             <article>
                 <h2>{{ m[0] }}</h2>
                 <p>{{ m[1] }}</p>
             </article>
             {% endfor %}
     {% else %}
-        <h2>"メモがありません"</h2>
+        <h2>メモがありません</h2>
         
     {% endif %}
     
