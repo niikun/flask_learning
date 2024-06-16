@@ -3,11 +3,9 @@ from flask import render_template
 
 app = Flask(__name__)
 
-
 memo_list = [
-    ["memo1","content1"],
-    ["memo2","content2"],
-    ["memo3","content3"]
+    {"title":"memo1","content":"content1"},
+    {"title":"memo2","content":"content2"}
 ]
 
 @app.route("/")
