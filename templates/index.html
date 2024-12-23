@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to the homepage</h1> 
+    <p>こんにちは！{{ name }}</p>
+    {% for  item in items %}
+        {% if loop.index % 2 == 0 %}
+            <li>{{ item }}</li>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
