@@ -1,12 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>メモアプリ</h1>
-        <article>
-            <h2>メモ1</h2>
-            <p>メモ1の内容が入ります。</p>
-        </article>
-        <article>
-            <h2>メモ2</h2>
-            <p>メモ2の内容が入ります。</p>
-        </article>
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>タイトル</td>
+                    <td>本文</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for content in contents %}
+                    <tr>
+                        <td>{{content.id}}</td>
+                        <td>{{content.title}}</td>
+                        <td>{{content.body}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
 {% endblock %}

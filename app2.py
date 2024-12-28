@@ -3,7 +3,7 @@ from flask import render_template
 
 app = Flask(__name__)
 
-list = [
+test_list = [
     "test1",
     "test2",
     "test3",
@@ -12,6 +12,7 @@ list = [
     "test6",
     "test7",
 ]
+
 
 @app.route("/<name>")
 def index(name):
