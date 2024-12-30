@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g ,request ,redirect # type: ignore
 import sqlite3
 DATABASE = "flaskmemo.db"
 
@@ -20,6 +20,18 @@ def get_db():
 def top():
     memo_list = get_db().execute('SELECT id, title, body FROM memo').fetchall()
     return render_template('index.html', memo_list=memo_list)
+
+@app.route('/regist', methods=['GET','POST'])
+def regist():
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        db = get_db()
+        db.execute('INSERT INTO memo (title, body) VALUES (?, ?)', [title, body])
+        db.commit()
+        return redirect('/')
+    
+    return render_template('regist.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
