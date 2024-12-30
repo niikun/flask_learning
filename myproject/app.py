@@ -1,18 +1,25 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, g
+import sqlite3
+DATABASE = "flaskmemo.db"
 
 app = Flask(__name__)
 
-contents = [
-    {"id":1, "title":"title1", "body":"body1"},
-    {"id":2, "title":"title2", "body":"body2"},
-    {"id":3, "title":"title3", "body":"body3"},
-]
+# database
+def connect_db():
+    rv = sqlite3.connect(DATABASE) # sqlite3.connect()でデータベースに接続
+    rv.row_factory = sqlite3.Row  # sqlite3.Rowオブジェクトを使って行を取得する
+    return rv
+
+def get_db():
+    # g.sqlite_dbが存在しない場合はconnect_db()を呼び出してデータベースに接続
+    if not hasattr(g, "sqlite_db"): 
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
 
 @app.route('/')
 def top():
-    return render_template('index.html',contents=contents)
+    memo_list = get_db().execute('SELECT id, title, body FROM memo').fetchall()
+    return render_template('index.html', memo_list=memo_list)
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(debug=True)

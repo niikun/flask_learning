@@ -1,23 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>メモアプリ</h1>
-        <table>
-            <thead>
+        {% if memo_list == [] %}
+            <p>メモはありません</p>
+        {% else %}
+            <table border="1">
                 <tr>
-                    <td>ID</td>
-                    <td>タイトル</td>
-                    <td>本文</td>
+                    <th>タイトル</th>
+                    <th>本文</th>
                 </tr>
-            </thead>
-            <tbody>
-                {% for content in contents %}
+                {% for memo in memo_list %}
                     <tr>
-                        <td>{{content.id}}</td>
-                        <td>{{content.title}}</td>
-                        <td>{{content.body}}</td>
+                        <td>{{memo.title}}</td>
+                        <td>{{memo.body}}</td>
                     </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+            </table>
+        {% endif %}
 
 {% endblock %}
