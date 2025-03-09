@@ -28,6 +28,9 @@ def login():
     else:
         return render_template("login.html")
 
+@app.route("/session")
+def show_session():
+    return f"Current session: {session.get('username')}"
 
 if __name__ == "__main__":
     app.run(debug=True)
