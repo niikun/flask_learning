@@ -1,0 +1,34 @@
+from flask import Flask,render_template,session,request,redirect,url_for
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+app = Flask(__name__)
+
+key = os.getenv("SECRET_KEY")
+app.secret_key = key
+
+id_pwd = {"niikun":"1234"}
+
+@app.route("/")
+def index():
+    return "Hello, World!"
+
+@app.route("/login",methods=["GET","POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        username = request.form["username"]
+        password = request.form["password"]
+        if id_pwd.get(username) == password:
+            session["username"] = username
+            return redirect(url_for("index"))
+        return "Login failed"
+    return render_template("login.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

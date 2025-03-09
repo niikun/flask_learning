@@ -1,0 +1,5 @@
+flask
+pylint
+pytest
+black
+python-dotenv
